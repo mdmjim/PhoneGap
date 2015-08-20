@@ -26,13 +26,23 @@ var app = {
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
+
+        alter('bindEvents');
+        
         document.addEventListener('deviceready', this.onDeviceReady, false);
+
+        
+        document.addEventListener('offline', this.offline, false);
+
+        
+        document.addEventListener('online', this.online, false);
     },
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
+    onDeviceReady: function() { 
+        alert('on deviceready');
         app.receivedEvent('deviceready');
     },
     // Update DOM on a Received Event
@@ -44,8 +54,18 @@ var app = {
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
 
+
         console.log('Received Event: ' + id);
+    },
+    // device off line
+    offline:function(){
+      alert("offline");
+    },
+    //deivce on line
+    online:function(){
+        alert('online');
     }
+
 };
 
 app.initialize();
